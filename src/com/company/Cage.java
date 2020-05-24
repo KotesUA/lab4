@@ -5,15 +5,18 @@ import Animals.Animal;
 import java.util.ArrayList;
 import java.util.UUID;
 
-abstract public class Cage <T extends Animal>{
+public class Cage{
     private int Capacity;
-    private UUID id;
+    private UUID ID;
+    private ArrayList<Animal> animalsInCage;
 
-    public ArrayList<T> animalsInCage;
+    public Cage(int capacity){
+        this.Capacity = capacity;
+        this.ID = UUID.randomUUID();
+        this.animalsInCage = new ArrayList<Animal>();
+    }
 
-    {
-        id = UUID.randomUUID();
-        Capacity = 5;
-        animalsInCage = new ArrayList<T>()
+    public int getAnimalNumber(){
+        return animalsInCage.size();
     }
 }

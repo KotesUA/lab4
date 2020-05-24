@@ -4,6 +4,7 @@ import Animals.Animal;
 import Exeptions.AnimalAlreadyInCageExeption;
 import Exeptions.CannotFindAnimalExeption;
 import Exeptions.NoSpaceExeption;
+import Exeptions.WrongAnimalTypeExeption;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -26,11 +27,19 @@ public class Cage<T extends Animal>{
     public boolean isThisAnimalInCage(T animal){return animalsInCage.contains(animal);}
 
     public void addAnimal(T animal){
-        if (!isThisAnimalInCage(animal) && getAnimalNumber() < Capacity){
-            animalsInCage.add(animal);
-        }
         if (isThisAnimalInCage(animal)) throw new AnimalAlreadyInCageExeption();
         if (getAnimalNumber() == Capacity) throw new NoSpaceExeption();
+        if (!isThisAnimalInCage(animal) && getAnimalNumber() < Capacity && getAnimalNumber() == 0){
+            animalsInCage.add(animal);
+            System.out.println("Animal added: " + animal);
+        }
+        else if (!isThisAnimalInCage(animal) && getAnimalNumber() < Capacity && getAnimalNumber() != 0){
+            if (animal.getClass().equals(this.animalsInCage.get(0).getClass())){
+                animalsInCage.add(animal);
+                System.out.println("Animal added: " + animal);
+            }
+            else throw new WrongAnimalTypeExeption();
+        }
     }
 
     public void removeAnimal(T animal){

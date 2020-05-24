@@ -13,7 +13,7 @@ public class Zoo {
 
     public void addCage(Cage cage){
         Cages.add(cage);
-        animalsNumber += cage.animalsNumber;
+        animalsNumber += cage.getAnimalNumber();
         System.out.println("Cage added successfully");
     }
 }
